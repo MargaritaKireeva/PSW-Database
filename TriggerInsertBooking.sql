@@ -1,11 +1,11 @@
 CREATE TRIGGER InsertBooking
 ON Bookings
-AFTER INSERT --при вставки строки в бронирование
+AFTER INSERT 
 AS
 BEGIN
 DECLARE @BookingAmount INT, @ItemID INT
 SELECT @ItemID = ItemID, @BookingAmount = Amount FROM inserted
 UPDATE Items
-SET AmountAvailable = AmountAvailable - @BookingAmount -- кол-во доступных товаров уменьшается
+SET AmountAvailable = AmountAvailable - @BookingAmount 
 WHERE ID = @ItemID
 END
